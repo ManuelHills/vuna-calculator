@@ -1,0 +1,23 @@
+# .gitignore
+# Files/folders that should NOT be uploaded to GitHub
+
+# Node.js
+node_modules/
+npm-debug.log*
+
+# Test coverage reports
+coverage/
+
+# Environment variables (NEVER commit secrets)
+.env
+.env.*
+!.env.example
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
