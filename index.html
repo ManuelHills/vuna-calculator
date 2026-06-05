@@ -1,75 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VUNA Calculator</title>
-  <!-- Bootstrap from CDN — no need to download Bootstrap files -->
+  <title>Oke Emmanuel Olamide — Calculator</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
-
 <body>
-  <!-- Theme Toggle Button -->
-  <button class="btn btn-outline-secondary theme-toggle-btn" id="theme-toggle" onclick="toggleTheme()"
-    title="Toggle dark/light mode">
-    🌙
-  </button>
 
-  <div class="container">
+  <button class="theme-toggle-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle dark/light mode">🌙</button>
+
+  <div class="container py-4">
     <div class="row justify-content-center">
-      <div class="col-lg-6 col-md-6 col-sm-8">
+      <div class="col-lg-5 col-md-7 col-sm-9">
 
-        <div class="border border-dotted border-3 rounded-3 p-3 mb-4 bg-white bg-opacity-50">
-          <h4 class="text-center group-header mb-0">VUNA CALCULATOR</h4>
-          <p class="text-center text-small text-muted">
-            <i>Created by set 2025/26 Software Engineering</i>
-          </p>
+        <!-- Header -->
+        <div class="header-box text-center mb-4">
+          <h4 class="calc-title mb-0">OKE EMMANUEL OLAMIDE</h4>
+          <p class="calc-subtitle mb-0"><i>Set 2025/26 — Software Engineering</i></p>
         </div>
 
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card calculator-card">
-              <div class="card-body p-4">
-                <div class="calculator">
+        <!-- Calculator -->
+        <div class="card calc-card mb-4">
+          <div class="card-body p-4">
+            <input type="text" id="display" class="calc-display mb-3" placeholder="0" disabled />
+            <div class="btn-grid">
+              <button class="btn btn-clear"    onclick="clearDisplay()">AC</button>
+              <button class="btn btn-back"     onclick="backspace()">⌫</button>
+              <button class="btn btn-operator" onclick="appendOp('/')">÷</button>
+              <button class="btn btn-operator" onclick="appendOp('*')">×</button>
 
-                  <div class="display-container">
-                    <input type="text" class="form-control" id="result" placeholder="0" disabled />
-                  </div>
+              <button class="btn btn-number"   onclick="appendNum('7')">7</button>
+              <button class="btn btn-number"   onclick="appendNum('8')">8</button>
+              <button class="btn btn-number"   onclick="appendNum('9')">9</button>
+              <button class="btn btn-operator" onclick="appendOp('-')">−</button>
 
-                  <div class="btn-grid">
-                    <button class="btn btn-light" onclick="bracketToResult('(')">(</button>
-                    <button class="btn btn-light" onclick="bracketToResult(')')">)</button>
-                    <button class="btn btn-light" onclick="backspace()">←</button>
-                    <button class="btn btn-action" onclick="clearResult()">AC</button>
+              <button class="btn btn-number"   onclick="appendNum('4')">4</button>
+              <button class="btn btn-number"   onclick="appendNum('5')">5</button>
+              <button class="btn btn-number"   onclick="appendNum('6')">6</button>
+              <button class="btn btn-operator" onclick="appendOp('+')">+</button>
 
-                    <button class="btn btn-light" onclick="appendToResult(7)">7</button>
-                    <button class="btn btn-light" onclick="appendToResult(8)">8</button>
-                    <button class="btn btn-light" onclick="appendToResult(9)">9</button>
-                    <button class="btn btn-operator" onclick="operatorToResult('/')">÷</button>
+              <button class="btn btn-number"   onclick="appendNum('1')">1</button>
+              <button class="btn btn-number"   onclick="appendNum('2')">2</button>
+              <button class="btn btn-number"   onclick="appendNum('3')">3</button>
+              <button class="btn btn-equals span-row-2" onclick="calculate()">=</button>
 
-                    <button class="btn btn-light" onclick="appendToResult(4)">4</button>
-                    <button class="btn btn-light" onclick="appendToResult(5)">5</button>
-                    <button class="btn btn-light" onclick="appendToResult(6)">6</button>
-                    <button class="btn btn-operator" onclick="operatorToResult('*')">×</button>
-
-                    <button class="btn btn-light" onclick="appendToResult(1)">1</button>
-                    <button class="btn btn-light" onclick="appendToResult(2)">2</button>
-                    <button class="btn btn-light" onclick="appendToResult(3)">3</button>
-                    <button class="btn btn-operator" onclick="operatorToResult('+')">+</button>
-
-                    <button class="btn btn-light" onclick="appendToResult('.')">.</button>
-                    <button class="btn btn-light" onclick="appendToResult(0)">0</button>
-                    <button class="btn btn-operator" onclick="percentToResult()">%</button>
-                    <button class="btn btn-operator" onclick="operatorToResult('-')">−</button>
-
-                    <button class="btn btn-equals" onclick="calculateResult()" style="grid-column: span 4;">=</button>
-                  </div>
-
-                </div>
-              </div>
+              <button class="btn btn-number span-2"    onclick="appendNum('0')">0</button>
+              <button class="btn btn-number"   onclick="appendDot()">.</button>
             </div>
+          </div>
+        </div>
+
+        <!-- Age Calculator (Unique Feature) -->
+        <div class="card calc-card">
+          <div class="card-body p-4">
+            <h6 class="feature-title text-center mb-3">🎂 Age Calculator</h6>
+            <label class="form-label">Enter your date of birth:</label>
+            <input type="date" id="dob-input" class="form-control mb-3" />
+            <button class="btn btn-age w-100 mb-3" onclick="calculateAge()">Calculate My Age</button>
+            <div id="age-result" class="age-result text-center" style="display:none;"></div>
           </div>
         </div>
 
@@ -77,12 +67,8 @@
     </div>
   </div>
 
-  <button id="scroll-to-calculator" title="Back to top">↑</button>
-
-  <!-- Bootstrap JS from CDN -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Calculator logic -->
-  <script src="assets/js/script.js"></script>
+  <script src="assets/js/calculator.js"></script>
+  <script src="assets/js/ui.js"></script>
 </body>
-
 </html>

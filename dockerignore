@@ -1,0 +1,10 @@
+# .dockerignore — files excluded from Docker build context
+
+node_modules/
+coverage/
+.git/
+.github/
+*.md
+server.js
+.eslintrc.js
+tests/

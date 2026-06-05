@@ -1,217 +1,122 @@
-/* ============================================
-   VUNA Calculator — Custom Styles
-   ============================================ */
+/* assets/css/styles.css */
 
-/* ── Base / Background ────────────────────── */
 body {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   min-height: 100vh;
-  padding: 30px 15px;
-  transition: background 0.4s ease;
+  padding: 20px 15px;
+  transition: background 0.4s;
   font-family: 'Segoe UI', sans-serif;
 }
 
-/* ── Dark Mode ────────────────────────────── */
-body.dark-mode {
-  background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
-}
+/* ── Dark mode ───────────────────────────────── */
+body.dark-mode { background: linear-gradient(135deg, #0f0c29, #302b63); }
+body.dark-mode .calc-card   { background: #1e1e2e; border: 1px solid #333; }
+body.dark-mode .calc-display { background: #111827; color: #4ade80; border-color: #374151; }
+body.dark-mode .btn-number  { background: #2d2d44; color: #fff; }
+body.dark-mode .header-box  { background: rgba(255,255,255,0.08) !important; }
+body.dark-mode .calc-title  { color: #e2e8f0; }
+body.dark-mode .feature-title { color: #a78bfa; }
+body.dark-mode .form-control { background: #1e1e2e; color: #e2e8f0; border-color: #444; }
 
-body.dark-mode .calculator-card {
-  background: #1e1e2e;
-  border: 1px solid #333;
+/* ── Header box ──────────────────────────────── */
+.header-box {
+  background: rgba(255,255,255,0.85);
+  border-radius: 16px;
+  padding: 14px 20px;
+  backdrop-filter: blur(8px);
 }
+.calc-title    { font-size: 1rem; font-weight: 800; letter-spacing: 2px; color: #2d2d44; }
+.calc-subtitle { font-size: 0.78rem; color: #666; }
 
-body.dark-mode .group-header {
-  color: #e0e0e0;
-}
-
-body.dark-mode .text-muted {
-  color: #888 !important;
-}
-
-body.dark-mode .btn.btn-light {
-  background-color: #2d2d44;
-  color: #ffffff;
-  border-color: #444;
-}
-
-body.dark-mode .btn.btn-light:hover {
-  background-color: #3d3d5c;
-}
-
-body.dark-mode .display-container input {
-  background: #111827;
-  color: #4ade80;
-  border-color: #374151;
-}
-
-body.dark-mode .border {
-  border-color: #444 !important;
-  background: rgba(30, 30, 50, 0.5) !important;
-}
-
-/* ── Group Header Box ─────────────────────── */
-.group-header {
-  font-weight: 800;
-  color: #2d2d44;
-  letter-spacing: 2px;
-  font-size: 1.1rem;
-  text-transform: uppercase;
-}
-
-/* ── Calculator Card ──────────────────────── */
-.calculator-card {
+/* ── Calculator card ─────────────────────────── */
+.calc-card {
   border: none !important;
-  border-radius: 24px !important;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
-  background: #ffffff;
-  overflow: hidden;
+  border-radius: 22px !important;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  background: #fff;
 }
 
-/* ── Display Input ────────────────────────── */
-.display-container {
-  margin-bottom: 18px;
-}
-
-.display-container input#result {
-  height: 64px;
-  font-size: 2rem;
+/* ── Display ─────────────────────────────────── */
+.calc-display {
+  width: 100%;
+  height: 62px;
+  font-size: 1.9rem;
+  font-weight: 700;
   text-align: right;
+  padding: 0 14px;
   border-radius: 14px;
   background: #f1f5f9;
   border: 2px solid #e2e8f0;
-  padding: 0 16px;
-  font-weight: 700;
   color: #1e293b;
-  letter-spacing: 1px;
   cursor: default;
-  transition: background 0.3s ease;
-  width: 100%;
-  box-sizing: border-box;
 }
 
-/* ── Button Grid ──────────────────────────── */
+/* ── Button grid ─────────────────────────────── */
 .btn-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+  gap: 9px;
 }
 
-/* ── All Calculator Buttons ───────────────── */
 .btn-grid .btn {
   height: 58px;
   font-size: 1.15rem;
   font-weight: 700;
-  border-radius: 14px;
+  border-radius: 13px;
   border: none;
-  cursor: pointer;
-  transition: all 0.15s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  transition: transform .12s, box-shadow .12s;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
 }
+.btn-grid .btn:active { transform: scale(0.93); }
 
-.btn-grid .btn:active {
-  transform: scale(0.93);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
-}
+.btn-number   { background: #f8fafc; color: #1e293b; }
+.btn-number:hover { background: #e2e8f0; }
+.btn-operator { background: linear-gradient(135deg,#764ba2,#667eea); color: #fff; }
+.btn-clear    { background: linear-gradient(135deg,#f5576c,#f093fb); color: #fff; }
+.btn-back     { background: linear-gradient(135deg,#f5576c,#f093fb); color: #fff; }
 
-/* ── Number / Utility Buttons ─────────────── */
-.btn-grid .btn.btn-light {
-  background-color: #f8fafc;
-  color: #1e293b;
-  border: 1px solid #e2e8f0;
-}
-
-.btn-grid .btn.btn-light:hover {
-  background-color: #e2e8f0;
-}
-
-/* ── Operator Buttons ─────────────────────── */
-.btn-operator {
-  background: linear-gradient(135deg, #764ba2, #667eea) !important;
-  color: white !important;
-}
-
-.btn-operator:hover {
-  opacity: 0.88;
-}
-
-/* ── AC (Clear All) Button ────────────────── */
-.btn-action {
-  background: linear-gradient(135deg, #f5576c, #f093fb) !important;
-  color: white !important;
-}
-
-.btn-action:hover {
-  opacity: 0.88;
-}
-
-/* ── Equals Button ────────────────────────── */
+/* Equals spans last column, 2 rows */
 .btn-equals {
-  background: linear-gradient(135deg, #43e97b, #38f9d7) !important;
-  color: #1a1a2e !important;
-  font-size: 1.6rem !important;
-  border-radius: 14px !important;
-  box-shadow: 0 6px 20px rgba(67, 233, 123, 0.35) !important;
-  letter-spacing: 2px;
+  background: linear-gradient(135deg,#43e97b,#38f9d7);
+  color: #1a1a2e;
+  grid-row: span 2;
+  height: auto;
 }
 
-.btn-equals:hover {
-  opacity: 0.90;
-}
+/* 0 button spans 2 columns */
+.span-2 { grid-column: span 2; }
 
-/* ── Theme Toggle Button (top-right) ─────── */
-.theme-toggle-btn {
-  position: fixed;
-  top: 15px;
-  right: 15px;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  font-size: 1.2rem;
-  padding: 0;
-  z-index: 1000;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
-  background: white;
-  border: 1px solid #e2e8f0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* ── Scroll-to-top Button ─────────────────── */
-#scroll-to-calculator {
-  position: fixed;
-  bottom: 22px;
-  right: 22px;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  color: white;
+/* ── Age Calculator ──────────────────────────── */
+.feature-title { font-weight: 700; color: #764ba2; letter-spacing: 1px; }
+.btn-age {
+  background: linear-gradient(135deg,#667eea,#764ba2);
+  color: #fff;
+  font-weight: 700;
+  border-radius: 13px;
   border: none;
-  font-size: 1.3rem;
-  cursor: pointer;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
-  z-index: 1000;
-  display: none;
-  align-items: center;
-  justify-content: center;
+  height: 50px;
+  font-size: 1rem;
+}
+.age-result {
+  background: #f1f5f9;
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 1rem;
+  color: #2d2d44;
 }
 
-/* ── Responsive (small phones) ───────────── */
+/* ── Theme toggle ────────────────────────────── */
+.theme-toggle-btn {
+  position: fixed; top: 14px; right: 14px;
+  width: 44px; height: 44px;
+  border-radius: 50%; border: 1px solid #e2e8f0;
+  background: #fff; font-size: 1.2rem;
+  cursor: pointer; z-index: 1000;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+/* ── Responsive ──────────────────────────────── */
 @media (max-width: 400px) {
-  .btn-grid .btn {
-    height: 50px;
-    font-size: 1rem;
-  }
-  .display-container input#result {
-    height: 54px;
-    font-size: 1.6rem;
-  }
-  .btn-grid {
-    gap: 7px;
-  }
+  .btn-grid .btn { height: 50px; font-size: 1rem; }
+  .calc-display  { height: 54px; font-size: 1.5rem; }
 }
