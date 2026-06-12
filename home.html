@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHIFT — Curated Lifestyle Market</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#E9E8E5;
+  --bg-card:#F5F4F1;
+  --ink:#141414;
+  --ink-muted:#6B6B6B;
+  --accent:#FF4500;
+  --white:#FFFFFF;
+  --border:rgba(20,20,20,0.1);
+  --font:'Space Grotesk',sans-serif;
+  --mono:'Space Mono',monospace;
+  --r:6px;
+  --r-lg:14px;
+}
+
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--ink);font-size:16px;line-height:1.5;overflow-x:hidden}
+
+/* ── HEADER ── */
+header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(233,232,229,0.88);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+  padding:0 48px;height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.logo{font-size:19px;font-weight:700;letter-spacing:0.1em;color:var(--ink);text-decoration:none}
+.logo em{font-style:normal;color:var(--accent)}
+nav{display:flex;gap:36px}
+nav a{font-size:14px;font-weight:500;color:var(--ink-muted);text-decoration:none;transition:color .2s;letter-spacing:.02em}
+nav a:hover{color:var(--accent)}
+.h-actions{display:flex;align-items:center;gap:16px}
+.icon-btn{
+  background:none;border:none;cursor:pointer;color:var(--ink);
+  width:38px;height:38px;display:flex;align-items:center;justify-content:center;
+  border-radius:50%;transition:background .2s;position:relative;
+}
+.icon-btn:hover{background:rgba(20,20,20,0.07)}
+.cart-badge{
+  position:absolute;top:3px;right:3px;
+  background:var(--accent);color:#fff;
+  font-family:var(--mono);font-size:9px;font-weight:700;
+  width:15px;height:15px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  transform:scale(0);transition:transform .25s cubic-bezier(.34,1.56,.64,1);
+}
+.cart-badge.on{transform:scale(1)}
+
+/* ── TICKER ── */
+.ticker{background:var(--ink);padding:9px 0;overflow:hidden;white-space:nowrap}
+.ticker-track{display:inline-flex;animation:tick 24s linear infinite}
+.tick-item{font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.7);padding:0 48px}
+.tick-dot{color:var(--accent);font-size:14px;vertical-align:middle}
+@keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ── HERO ── */
+.hero{
+  display:grid;grid-template-columns:1fr 1fr;
+  min-height:calc(100vh - 100px);
+  padding:80px 48px 64px;gap:48px;align-items:center;
+}
+.hero-eyebrow{
+  font-family:var(--mono);font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:24px;
+  display:flex;align-items:center;gap:10px;
+}
+.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--accent)}
+.hero-headline{
+  font-size:clamp(52px,6.5vw,92px);font-weight:700;
+  line-height:.94;letter-spacing:-.04em;color:var(--ink);margin-bottom:28px;
+}
+.hero-headline .hl{color:var(--accent);display:block}
+.hero-desc{font-size:16px;color:var(--ink-muted);max-width:380px;line-height:1.75;margin-bottom:44px}
+.ctas{display:flex;gap:14px;flex-wrap:wrap}
+.btn-p{
+  background:var(--accent);color:#fff;padding:14px 28px;
+  font-family:var(--font);font-size:14px;font-weight:600;letter-spacing:.04em;
+  border:2px solid var(--accent);border-radius:var(--r);cursor:pointer;
+  text-decoration:none;display:inline-block;transition:background .2s,transform .15s;
+}
+.btn-p:hover{background:#e03d00;border-color:#e03d00;transform:translateY(-1px)}
+.btn-o{
+  background:transparent;color:var(--ink);padding:14px 28px;
+  font-family:var(--font);font-size:14px;font-weight:600;letter-spacing:.04em;
+  border:2px solid var(--ink);border-radius:var(--r);cursor:pointer;
+  text-decoration:none;display:inline-block;transition:all .2s;
+}
+.btn-o:hover{background:var(--ink);color:#fff;transform:translateY(-1px)}
+
+/* Hero visual */
+.hero-visual{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:14px;height:580px}
+.hv-card{border-radius:var(--r-lg);overflow:hidden;position:relative;cursor:pointer;transition:transform .25s}
+.hv-card:hover{transform:scale(1.01)}
+.hv-card:first-child{grid-column:1/-1}
+.hv-bg{width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative}
+.hv-label{
+  position:absolute;bottom:14px;left:14px;right:14px;
+  background:rgba(255,255,255,.92);backdrop-filter:blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius:10px;padding:12px 16px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.hv-name{font-size:13px;font-weight:600}
+.hv-price{font-family:var(--mono);font-size:13px;color:var(--accent)}
+.new-tag{
+  position:absolute;top:12px;right:12px;
+  background:var(--accent);color:#fff;
+  font-family:var(--mono);font-size:9px;letter-spacing:.1em;font-weight:700;
+  padding:4px 8px;border-radius:4px;
+}
+
+/* Product image colors */
+.c-walnut{background:linear-gradient(145deg,#c8a97a,#8b6315)}
+.c-slate{background:linear-gradient(145deg,#8cabca,#4a7fa8)}
+.c-sage{background:linear-gradient(145deg,#a2b59a,#5d8654)}
+.c-clay{background:linear-gradient(145deg,#d0a5a5,#a06060)}
+.c-teal{background:linear-gradient(145deg,#72c4c4,#3a9999)}
+.c-wheat{background:linear-gradient(145deg,#e0c07a,#b09040)}
+
+/* ── STATS ── */
+.stats{
+  background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  display:flex;padding:28px 48px;justify-content:space-around;flex-wrap:wrap;gap:24px;
+}
+.stat{text-align:center}
+.stat-n{font-size:30px;font-weight:700;letter-spacing:-.03em;display:block}
+.stat-n span{color:var(--accent)}
+.stat-l{font-size:11px;color:var(--ink-muted);letter-spacing:.1em;text-transform:uppercase;font-family:var(--mono)}
+
+/* ── PRODUCTS ── */
+.products{padding:80px 48px}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:36px}
+.sec-lbl{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:8px}
+.sec-title{font-size:34px;font-weight:700;letter-spacing:-.03em}
+.view-all{font-size:14px;font-weight:500;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent);padding-bottom:2px;transition:opacity .2s}
+.view-all:hover{opacity:.7}
+
+.filters{display:flex;gap:8px;margin-bottom:40px;flex-wrap:wrap}
+.f-btn{
+  font-family:var(--font);font-size:13px;font-weight:500;
+  padding:8px 18px;border:1.5px solid var(--border);
+  border-radius:100px;background:transparent;color:var(--ink-muted);
+  cursor:pointer;transition:all .2s;
+}
+.f-btn:hover,.f-btn.on{background:var(--ink);border-color:var(--ink);color:#fff}
+
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.pcard{
+  background:var(--white);border-radius:var(--r-lg);
+  overflow:hidden;transition:transform .25s,box-shadow .25s;cursor:pointer;
+}
+.pcard:hover{transform:translateY(-4px);box-shadow:0 18px 56px rgba(20,20,20,0.1)}
+.pimg{height:240px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.cat-tag{
+  position:absolute;top:12px;left:12px;
+  font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+  padding:4px 10px;border-radius:100px;
+  background:rgba(255,255,255,.88);color:var(--ink-muted);font-weight:700;
+}
+.wl-btn{
+  position:absolute;top:12px;right:12px;
+  width:32px;height:32px;border-radius:50%;
+  background:rgba(255,255,255,.9);border:none;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;opacity:0;transform:scale(.8);transition:all .2s;
+}
+.pcard:hover .wl-btn{opacity:1;transform:scale(1)}
+.wl-btn.liked svg{fill:#FF4500;stroke:#FF4500}
+.pinfo{padding:20px}
+.pname{font-size:15px;font-weight:600;margin-bottom:4px;letter-spacing:-.01em}
+.pdesc{font-size:13px;color:var(--ink-muted);margin-bottom:16px;line-height:1.55}
+.pfoot{display:flex;align-items:center;justify-content:space-between}
+.pprice{font-family:var(--mono);font-size:16px;font-weight:700}
+.add-btn{
+  background:var(--accent);color:#fff;border:none;
+  padding:8px 16px;border-radius:var(--r);
+  font-family:var(--font);font-size:13px;font-weight:600;
+  cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px;
+}
+.add-btn:hover{background:#e03d00;transform:scale(1.02)}
+.add-btn.ok{background:var(--ink)}
+
+/* ── PROMO ── */
+.promo{
+  background:var(--ink);padding:88px 48px;
+  display:flex;align-items:center;justify-content:space-between;gap:48px;
+}
+.promo-ey{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+.promo-h{font-size:clamp(34px,4vw,54px);font-weight:700;color:#fff;letter-spacing:-.03em;line-height:1.06;margin-bottom:18px}
+.promo-s{font-size:15px;color:rgba(255,255,255,.5);max-width:420px;line-height:1.7}
+.btn-promo{
+  background:var(--accent);color:#fff;padding:16px 36px;
+  font-family:var(--font);font-size:15px;font-weight:600;
+  border:none;border-radius:var(--r);cursor:pointer;
+  text-decoration:none;display:inline-block;white-space:nowrap;
+  transition:all .2s;flex-shrink:0;
+}
+.btn-promo:hover{background:#ff6020;transform:translateY(-2px)}
+
+/* ── NEWSLETTER ── */
+.newsletter{padding:88px 48px;background:var(--white);text-align:center}
+.nl-lbl{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+.nl-title{font-size:clamp(26px,3.5vw,42px);font-weight:700;letter-spacing:-.03em;margin-bottom:12px}
+.nl-sub{font-size:15px;color:var(--ink-muted);margin-bottom:36px}
+.nl-form{display:flex;gap:12px;max-width:460px;margin:0 auto}
+.nl-input{
+  flex:1;padding:14px 18px;border:1.5px solid var(--border);
+  border-radius:var(--r);font-family:var(--font);font-size:14px;
+  background:var(--bg);color:var(--ink);outline:none;transition:border-color .2s;
+}
+.nl-input:focus{border-color:var(--accent)}
+.nl-input::placeholder{color:var(--ink-muted)}
+.nl-msg{margin-top:12px;font-size:13px;color:var(--accent);display:none}
+
+/* ── FOOTER ── */
+footer{background:var(--ink);color:#fff;padding:64px 48px 32px}
+.ft{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:48px;margin-bottom:56px}
+.ft .logo{color:#fff;margin-bottom:14px;display:block}
+.ft-desc{font-size:13px;color:rgba(255,255,255,.45);line-height:1.75;max-width:230px}
+.ft-h{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:18px}
+.ft-links{list-style:none;display:flex;flex-direction:column;gap:12px}
+.ft-links a{font-size:14px;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s}
+.ft-links a:hover{color:var(--accent)}
+.fb{border-top:1px solid rgba(255,255,255,.08);padding-top:28px;display:flex;align-items:center;justify-content:space-between}
+.fc{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.3)}
+.fsoc{display:flex;gap:20px}
+.fsoc a{font-size:13px;color:rgba(255,255,255,.38);text-decoration:none;transition:color .2s}
+.fsoc a:hover{color:#fff}
+
+/* ── CART DRAWER ── */
+.c-overlay{
+  position:fixed;inset:0;background:rgba(20,20,20,.4);z-index:200;
+  opacity:0;pointer-events:none;transition:opacity .3s;
+}
+.c-overlay.on{opacity:1;pointer-events:all}
+.c-drawer{
+  position:fixed;top:0;right:0;bottom:0;width:400px;max-width:90vw;
+  background:var(--white);z-index:201;
+  transform:translateX(100%);transition:transform .35s cubic-bezier(.16,1,.3,1);
+  display:flex;flex-direction:column;
+}
+.c-drawer.on{transform:translateX(0)}
+.c-head{padding:24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.c-title{font-size:17px;font-weight:700}
+.c-close{background:none;border:none;cursor:pointer;color:var(--ink-muted);width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background .2s}
+.c-close:hover{background:var(--bg)}
+.c-items{flex:1;overflow-y:auto;padding:24px}
+.c-empty{text-align:center;padding:60px 0;color:var(--ink-muted)}
+.c-empty-icon{font-size:48px;margin-bottom:16px;opacity:.35}
+.c-empty p{font-size:15px}
+.c-item{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--border)}
+.c-item-thumb{width:64px;height:64px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.c-item-info{flex:1}
+.c-item-name{font-size:14px;font-weight:600;margin-bottom:4px}
+.c-item-price{font-family:var(--mono);font-size:13px;color:var(--accent)}
+.c-item-rm{background:none;border:none;cursor:pointer;color:var(--ink-muted);transition:color .2s;line-height:1}
+.c-item-rm:hover{color:var(--accent)}
+.c-foot{padding:24px;border-top:1px solid var(--border)}
+.c-total{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.c-total-l{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted)}
+.c-total-v{font-family:var(--mono);font-size:20px;font-weight:700}
+.btn-checkout{
+  width:100%;background:var(--accent);color:#fff;border:none;
+  padding:15px;font-family:var(--font);font-size:15px;font-weight:700;
+  border-radius:var(--r);cursor:pointer;transition:background .2s;letter-spacing:.03em;
+}
+.btn-checkout:hover{background:#e03d00}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .pgrid{grid-template-columns:repeat(2,1fr)}
+  .ft{grid-template-columns:1fr 1fr;gap:36px}
+}
+@media(max-width:768px){
+  header{padding:0 20px}
+  nav{display:none}
+  .hero{grid-template-columns:1fr;padding:48px 20px 40px;min-height:auto;gap:36px}
+  .hero-visual{height:380px}
+  .hero-headline{font-size:46px}
+  .stats{padding:20px}
+  .products{padding:60px 20px}
+  .sec-head{flex-direction:column;align-items:flex-start;gap:12px}
+  .pgrid{grid-template-columns:1fr}
+  .promo{flex-direction:column;padding:60px 20px;text-align:center}
+  .newsletter{padding:60px 20px}
+  .nl-form{flex-direction:column}
+  footer{padding:48px 20px 24px}
+  .ft{grid-template-columns:1fr 1fr}
+  .fb{flex-direction:column;gap:16px;text-align:center}
+}
+@media(prefers-reduced-motion:reduce){
+  .ticker-track{animation:none}
+  *{transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="#" class="logo">SH<em>I</em>FT</a>
+  <nav>
+    <a href="#">New In</a>
+    <a href="#">Collections</a>
+    <a href="#">Sale</a>
+    <a href="#">About</a>
+  </nav>
+  <div class="h-actions">
+    <button class="icon-btn" aria-label="Search">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    </button>
+    <button class="icon-btn" id="cartBtn" aria-label="Open cart">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <span class="cart-badge" id="cartBadge">0</span>
+    </button>
+  </div>
+</header>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="tick-item">Free shipping on orders over $75</span><span class="tick-dot">✦</span>
+    <span class="tick-item">Carbon-neutral packaging</span><span class="tick-dot">✦</span>
+    <span class="tick-item">New drops every Friday</span><span class="tick-dot">✦</span>
+    <span class="tick-item">30-day returns, no questions</span><span class="tick-dot">✦</span>
+    <span class="tick-item">Free shipping on orders over $75</span><span class="tick-dot">✦</span>
+    <span class="tick-item">Carbon-neutral packaging</span><span class="tick-dot">✦</span>
+    <span class="tick-item">New drops every Friday</span><span class="tick-dot">✦</span>
+    <span class="tick-item">30-day returns, no questions</span><span class="tick-dot">✦</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow">Summer Collection 2026</div>
+    <h1 class="hero-headline">Less stuff.<br><span class="hl">Better</span>things.</h1>
+    <p class="hero-desc">Every piece in SHIFT is chosen for how it improves your everyday. No filler, no fast fashion — just things built to last and made to love.</p>
+    <div class="ctas">
+      <a href="#" class="btn-p">Shop Now</a>
+      <a href="#" class="btn-o">View Lookbook</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hv-card">
+      <div class="hv-bg c-walnut">
+        <svg width="88" height="88" viewBox="0 0 88 88" fill="rgba(255,255,255,.25)">
+          <rect x="10" y="30" width="68" height="40" rx="5"/>
+          <rect x="18" y="20" width="34" height="14" rx="3"/>
+          <rect x="22" y="42" width="18" height="10" rx="3" fill="rgba(255,255,255,.45)"/>
+        </svg>
+        <span class="new-tag">NEW</span>
+        <div class="hv-label"><span class="hv-name">Shell Leather Wallet</span><span class="hv-price">$85</span></div>
+      </div>
+    </div>
+    <div class="hv-card">
+      <div class="hv-bg c-slate">
+        <svg width="68" height="68" viewBox="0 0 68 68" fill="rgba(255,255,255,.28)">
+          <ellipse cx="34" cy="16" rx="20" ry="8"/>
+          <path d="M14 16L10 54Q34 62 58 54L54 16Z"/>
+          <ellipse cx="34" cy="54" rx="24" ry="5" fill="rgba(255,255,255,.2)"/>
+        </svg>
+        <div class="hv-label"><span class="hv-name">Wave Pour-Over</span><span class="hv-price">$120</span></div>
+      </div>
+    </div>
+    <div class="hv-card">
+      <div class="hv-bg c-sage">
+        <svg width="68" height="68" viewBox="0 0 68 68" fill="rgba(255,255,255,.28)">
+          <ellipse cx="34" cy="26" rx="28" ry="18"/>
+          <rect x="18" y="26" width="32" height="22" rx="10"/>
+          <ellipse cx="34" cy="14" rx="7" ry="7" fill="rgba(255,255,255,.5)"/>
+        </svg>
+        <div class="hv-label"><span class="hv-name">Alpine Merino Beanie</span><span class="hv-price">$45</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><span class="stat-n">4.9<span>★</span></span><span class="stat-l">Avg Rating</span></div>
+  <div class="stat"><span class="stat-n">12K<span>+</span></span><span class="stat-l">Happy Customers</span></div>
+  <div class="stat"><span class="stat-n">120<span>+</span></span><span class="stat-l">Products</span></div>
+  <div class="stat"><span class="stat-n">0<span>%</span></span><span class="stat-l">Plastic Packaging</span></div>
+</div>
+
+<!-- PRODUCTS -->
+<section class="products">
+  <div class="sec-head">
+    <div><p class="sec-lbl">Latest Drops</p><h2 class="sec-title">Made to keep</h2></div>
+    <a href="#" class="view-all">View all products →</a>
+  </div>
+  <div class="filters" role="group" aria-label="Filter products">
+    <button class="f-btn on">All</button>
+    <button class="f-btn">Accessories</button>
+    <button class="f-btn">Kitchen</button>
+    <button class="f-btn">Apparel</button>
+    <button class="f-btn">Home</button>
+    <button class="f-btn">Carry</button>
+  </div>
+  <div class="pgrid" id="pgrid">
+
+    <!-- 1 -->
+    <div class="pcard" data-cat="accessories">
+      <div class="pimg c-walnut">
+        <svg width="76" height="76" viewBox="0 0 76 76" fill="rgba(255,255,255,.28)">
+          <rect x="10" y="24" width="56" height="36" rx="5"/><rect x="16" y="16" width="28" height="12" rx="3"/>
+          <rect x="20" y="36" width="14" height="8" rx="3" fill="rgba(255,255,255,.5)"/>
+        </svg>
+        <span class="cat-tag">Accessories</span>
+        <button class="wl-btn" aria-label="Wishlist" onclick="toggleWish(this)">
+          <svg width="14" height="14" fill="none" stroke="#141414" stroke-width="2"><path d="M12 3.5a3.5 3.5 0 00-4.95 0L6 4.56l-1.06-1.06a3.5 3.5 0 00-4.95 4.95l1.06 1.06L6 14.07l4.95-4.95 1.06-1.06A3.5 3.5 0 0012 3.5z"/></svg>
+        </button>
+      </div>
+      <div class="pinfo">
+        <p class="pname">Shell Leather Wallet</p>
+        <p class="pdesc">Vegetable-tanned shell cordovan. Single-piece construction that gets better with age.</p>
+        <div class="pfoot">
+          <span class="pprice">$85</span>
+          <button class="add-btn" onclick="addToCart(this,'Shell Leather Wallet',85,'c-walnut')">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="6.5" y1="1" x2="6.5" y2="12"/><line x1="1" y1="6.5" x2="12" y2="6.5"/></svg>Add
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="pcard" data-cat="kitchen">
+      <div class="pimg c-slate">
+        <svg width="76" height="76" viewBox="0 0 76 76" fill="rgba(255,255,255,.28)">
+          <ellipse cx="38" cy="17" rx="20" ry="8"/>
+          <path d="M18 17L14 58Q38 65 62 58L58 17Z"/>
+          <ellipse cx="38" cy="58" rx="24" ry="5" fill="rgba(255,255,255,.2)"/>
+        </svg>
+        <span class="cat-tag">Kitchen</span>
+        <button class="wl-btn" aria-label="Wishlist" onclick="toggleWish(this)">
+          <svg width="14" height="14" fill="none" stroke="#141414" stroke-width="2"><path d="M12 3.5a3.5 3.5 0 00-4.95 0L6 4.56l-1.06-1.06a3.5 3.5 0 00-4.95 4.95l1.06 1.06L6 14.07l4.95-4.95 1.06-1.06A3.5 3.5 0 0012 3.5z"/></svg>
+        </button>
+      </div>
+      <div class="pinfo">
+        <p class="pname">Wave Pour-Over Set</p>
+        <p class="pdesc">Ceramic dripper with stainless server. For the ritual as much as the result.</p>
+        <div class="pfoot">
+          <span class="pprice">$120</span>
+          <button class="add-btn" onclick="addToCart(this,'Wave Pour-Over Set',120,'c-slate')">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="6.5" y1="1" x2="6.5" y2="12"/><line x1="1" y1="6.5" x2="12" y2="6.5"/></svg>Add
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="pcard" data-cat="apparel">
+      <div class="pimg c-sage">
+        <svg width="76" height="76" viewBox="0 0 76 76" fill="rgba(255,255,255,.28)">
+          <ellipse cx="38" cy="28" rx="28" ry="18"/>
+          <rect x="20" y="28" width="36" height="24" rx="10"/>
+          <ellipse cx="38" cy="14" rx="7" ry="7" fill="rgba(255,255,255,.5)"/>
+        </svg>
+        <span class="cat-tag">Apparel</span>
+        <button class="wl-btn" aria-label="Wishlist" onclick="toggleWish(this)">
+          <svg width="14" height="14" fill="none" stroke="#141414" stroke-width="2"><path d="M12 3.5a3.5 3.5 0 00-4.95 0L6 4.56l-1.06-1.06a3.5 3.5 0 00-4.95 4.95l1.06 1.06L6 14.07l4.95-4.95 1.06-1.06A3.5 3.5 0 0012 3.5z"/></svg>
+        </button>
+      </div>
+      <div class="pinfo">
+        <p class="pname">Alpine Merino Beanie</p>
+        <p class="pdesc">250gsm merino wool. Moisture-wicking and itch-free — wears all season.</p>
+        <div class="pfoot">
+          <span class="pprice">$45</span>
+          <button class="add-btn" onclick="addToCart(this,'Alpine Merino Beanie',45,'c-sage')">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="6.5" y1="1" x2="6.5" y2="12"/><line x1="1" y1="6.5" x2="12" y2="6.5"/></svg>Add
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="pcard" data-cat="home">
+      <div class="pimg c-clay">
+        <svg width="76" height="76" viewBox="0 0 76 76" fill="rgba(255,255,255,.28)">
+          <rect x="8" y="20" width="60" height="36" rx="18"/>
+          <ellipse cx="38" cy="38" rx="18" ry="12" fill="rgba(255,255,255,.2)"/>
+        </svg>
+        <span class="cat-tag">Home</span>
+        <button class="wl-btn" aria-label="Wishlist" onclick="toggleWish(this)">
+          <svg width="14" height="14" fill="none" stroke="#141414" stroke-width="2"><path d="M12 3.5a3.5 3.5 0 00-4.95 0L6 4.56l-1.06-1.06a3.5 3.5 0 00-4.95 4.95l1.06 1.06L6 14.07l4.95-4.95 1.06-1.06A3.5 3.5 0 0012 3.5z"/></svg>
+        </button>
+      </div>
+      <div class="pinfo">
+        <p class="pname">Stonewash Linen Pillow</p>
+        <p class="pdesc">Pre-washed linen cover, hypoallergenic fill. Comes in 45×45 and 60×60.</p>
+        <div class="pfoot">
+          <span class="pprice">$65</span>
+          <button class="add-btn" onclick="addToCart(this,'Stonewash Linen Pillow',65,'c-clay')">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="6.5" y1="1" x2="6.5" y2="12"/><line x1="1" y1="6.5" x2="12" y2="6.5"/></svg>Add
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="pcard" data-cat="carry">
+      <div class="pimg c-teal">
+        <svg width="76" height="76" viewBox="0 0 76 76" fill="rgba(255,255,255,.28)">
+          <rect x="26" y="8" width="24" height="10" rx="4"/>
+          <rect x="18" y="18" width="40" height="48" rx="12"/>
+          <rect x="24" y="54" width="28" height="8" rx="6" fill="rgba(255,255,255,.4)"/>
+        </svg>
+        <span class="cat-tag">Carry</span>
+        <button class="wl-btn" aria-label="Wishlist" onclick="toggleWish(this)">
+          <svg width="14" height="14" fill="none" stroke="#141414" stroke-width="2"><path d="M12 3.5a3.5 3.5 0 00-4.95 0L6 4.56l-1.06-1.06a3.5 3.5 0 00-4.95 4.95l1.06 1.06L6 14.07l4.95-4.95 1.06-1.06A3.5 3.5 0 0012 3.5z"/></svg>
+        </button>
+      </div>
+      <div class="pinfo">
+        <p class="pname">Forma Bamboo Bottle</p>
+        <p class="pdesc">Double-walled bamboo exterior. 500ml — cold for 24h, hot for 12h.</p>
+        <div class="pfoot">
+          <span class="pprice">$35</span>
+          <button class="add-btn" onclick="addToCart(this,'Forma Bamboo Bottle',35,'c-teal')">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="6.5" y1="1" x2="6.5" y2="12"/><line x1="1" y1="6.5" x2="12" y2="6.5"/></svg>Add
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="pcard" data-cat="carry">
+      <div class="pimg c-wheat">
+        <svg width="76" height="76" viewBox="0 0 76 76" fill="rgba(255,255,255,.28)">
+          <path d="M18 28Q18 20 28 20L48 20Q58 20 58 28L62 64Q62 68 58 68L18 68Q14 68 14 64Z"/>
+          <path d="M30 20Q30 10 38 10Q46 10 46 20" stroke="rgba(255,255,255,.55)" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <rect x="26" y="40" width="24" height="16" rx="4" fill="rgba(255,255,255,.25)"/>
+        </svg>
+        <span class="cat-tag">Carry</span>
+        <button class="wl-btn" aria-label="Wishlist" onclick="toggleWish(this)">
+          <svg width="14" height="14" fill="none" stroke="#141414" stroke-width="2"><path d="M12 3.5a3.5 3.5 0 00-4.95 0L6 4.56l-1.06-1.06a3.5 3.5 0 00-4.95 4.95l1.06 1.06L6 14.07l4.95-4.95 1.06-1.06A3.5 3.5 0 0012 3.5z"/></svg>
+        </button>
+      </div>
+      <div class="pinfo">
+        <p class="pname">Day Canvas Tote</p>
+        <p class="pdesc">12oz natural canvas, leather base reinforcement. 18L with internal zip pocket.</p>
+        <div class="pfoot">
+          <span class="pprice">$55</span>
+          <button class="add-btn" onclick="addToCart(this,'Day Canvas Tote',55,'c-wheat')">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="6.5" y1="1" x2="6.5" y2="12"/><line x1="1" y1="6.5" x2="12" y2="6.5"/></svg>Add
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROMO BANNER -->
+<section class="promo">
+  <div>
+    <p class="promo-ey">Mid-Season Sale</p>
+    <h2 class="promo-h">Up to 30% off<br>select items.</h2>
+    <p class="promo-s">Reduced for a limited window. No promo code needed — discounts are already applied at checkout.</p>
+  </div>
+  <a href="#" class="btn-promo">Shop the Sale →</a>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <p class="nl-lbl">Stay in the loop</p>
+  <h2 class="nl-title">New drops, first looks,<br>and no junk mail.</h2>
+  <p class="nl-sub">Join 12,000+ people who get our Friday edit. Unsubscribe any time.</p>
+  <div class="nl-form">
+    <input type="email" class="nl-input" id="nlInput" placeholder="your@email.com" aria-label="Email address">
+    <button class="btn-p" onclick="subscribe()">Subscribe</button>
+  </div>
+  <p class="nl-msg" id="nlMsg">✓ You're in. See you Friday.</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft">
+    <div>
+      <a href="#" class="logo">SH<em style="font-style:normal;color:#FF4500">I</em>FT</a>
+      <p class="ft-desc">A curated marketplace for everyday objects worth owning. Quality over quantity, always.</p>
+    </div>
+    <div>
+      <p class="ft-h">Shop</p>
+      <ul class="ft-links">
+        <li><a href="#">New In</a></li>
+        <li><a href="#">Accessories</a></li>
+        <li><a href="#">Kitchen</a></li>
+        <li><a href="#">Apparel</a></li>
+        <li><a href="#">Home & Carry</a></li>
+        <li><a href="#">Sale</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ft-h">Company</p>
+      <ul class="ft-links">
+        <li><a href="#">About SHIFT</a></li>
+        <li><a href="#">Our Standards</a></li>
+        <li><a href="#">Sustainability</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Careers</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ft-h">Help</p>
+      <ul class="ft-links">
+        <li><a href="#">Shipping & Returns</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Track an Order</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="fb">
+    <span class="fc">© 2026 SHIFT Market Ltd. All rights reserved.</span>
+    <div class="fsoc">
+      <a href="#">Instagram</a>
+      <a href="#">Twitter / X</a>
+      <a href="#">Pinterest</a>
+    </div>
+  </div>
+</footer>
+
+<!-- CART DRAWER -->
+<div class="c-overlay" id="cOverlay" onclick="closeCart()"></div>
+<div class="c-drawer" id="cDrawer" role="dialog" aria-modal="true" aria-label="Shopping cart">
+  <div class="c-head">
+    <span class="c-title">Your Cart</span>
+    <button class="c-close" onclick="closeCart()" aria-label="Close cart">
+      <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2"><line x1="16" y1="1" x2="1" y2="16"/><line x1="1" y1="1" x2="16" y2="16"/></svg>
+    </button>
+  </div>
+  <div class="c-items" id="cItems">
+    <div class="c-empty" id="cEmpty">
+      <div class="c-empty-icon">
+        <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      </div>
+      <p>Your cart is empty.</p>
+    </div>
+  </div>
+  <div class="c-foot">
+    <div class="c-total">
+      <span class="c-total-l">Total</span>
+      <span class="c-total-v" id="cTotal">$0</span>
+    </div>
+    <button class="btn-checkout">Checkout →</button>
+  </div>
+</div>
+
+<script>
+var cart=[], cartCount=0, cartTotal=0;
+
+document.getElementById('cartBtn').addEventListener('click',openCart);
+function openCart(){document.getElementById('cDrawer').classList.add('on');document.getElementById('cOverlay').classList.add('on');document.body.style.overflow='hidden'}
+function closeCart(){document.getElementById('cDrawer').classList.remove('on');document.getElementById('cOverlay').classList.remove('on');document.body.style.overflow=''}
+
+function addToCart(btn,name,price,cls){
+  var orig=btn.innerHTML;
+  btn.innerHTML='<svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="11 3 5 9 2 6"/></svg> Added';
+  btn.classList.add('ok');btn.disabled=true;
+  setTimeout(function(){btn.innerHTML=orig;btn.classList.remove('ok');btn.disabled=false},1600);
+  var ex=cart.find(function(i){return i.name===name});
+  if(ex){ex.qty++}else{cart.push({name:name,price:price,cls:cls,qty:1})}
+  cartCount++;cartTotal+=price;
+  var b=document.getElementById('cartBadge');b.textContent=cartCount;b.classList.add('on');
+  document.getElementById('cTotal').textContent='$'+cartTotal;
+  renderCart();
+}
+
+function renderCart(){
+  var c=document.getElementById('cItems');
+  if(!cart.length){c.innerHTML='';c.appendChild(document.getElementById('cEmpty'));return}
+  c.innerHTML=cart.map(function(item,i){return'<div class="c-item"><div class="c-item-thumb '+item.cls+'"></div><div class="c-item-info"><p class="c-item-name">'+item.name+(item.qty>1?' ×'+item.qty:'')+'</p><p class="c-item-price">$'+(item.price*item.qty)+'</p></div><button class="c-item-rm" onclick="removeItem('+i+')" aria-label="Remove">✕</button></div>'}).join('');
+}
+
+function removeItem(i){
+  var item=cart[i];cartCount-=item.qty;cartTotal-=item.price*item.qty;
+  cart.splice(i,1);
+  var b=document.getElementById('cartBadge');b.textContent=cartCount;
+  if(!cartCount)b.classList.remove('on');
+  document.getElementById('cTotal').textContent='$'+cartTotal;
+  renderCart();
+}
+
+function toggleWish(btn){btn.classList.toggle('liked')}
+
+// Category filter
+document.querySelectorAll('.f-btn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.f-btn').forEach(function(b){b.classList.remove('on')});
+    btn.classList.add('on');
+    var cat=btn.textContent.toLowerCase();
+    document.querySelectorAll('.pcard').forEach(function(card){
+      card.style.display=(cat==='all'||card.dataset.cat===cat)?'':'none';
+    });
+  });
+});
+
+// Newsletter
+function subscribe(){
+  var inp=document.getElementById('nlInput');
+  if(!inp.value||!inp.value.includes('@')){inp.style.borderColor='#FF4500';return}
+  inp.style.borderColor='';inp.value='';
+  var msg=document.getElementById('nlMsg');msg.style.display='block';
+  setTimeout(function(){msg.style.display='none'},4000);
+}
+</script>
+</body>
+</html>

@@ -24,6 +24,7 @@ body.dark-mode .form-control { background: #1e1e2e; color: #e2e8f0; border-color
   border-radius: 16px;
   padding: 14px 20px;
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8PX);
 }
 .calc-title    { font-size: 1rem; font-weight: 800; letter-spacing: 2px; color: #2d2d44; }
 .calc-subtitle { font-size: 0.78rem; color: #666; }
